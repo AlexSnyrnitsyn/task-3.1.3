@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<div class="container col-6 form-group text-center">
+    <form role="form" id="user-addform" th:action="@{/admin/create}" th:method="POST" th:object="${user}">
+
+    <div>
+        <label for="newFirstName">First name</label>
+        <input type="text" class="form-control" required placeholder="Enter first name" th:field="*{name}" id="newFirstName">
+    </div>
+
+    <div>
+        <label for="newLastName">Last name</label>
+        <input type="text" class="form-control" required placeholder="Enter last name" th:field="*{lastName}" id="newLastName">
+    </div>
+
+        <div>
+            <label for="newEmail">Email</label>
+            <input type="email" class="form-control" required placeholder="Enter Email" th:field="*{email}" id="newEmail">
+        </div>
+
+    <div>
+        <label for="newPhone">Phone</label>
+        <input type="text" class="form-control" th:field="*{phone}" id="newPhone">
+
+    </div>
+
+    <div id="password-div">
+        <label for="newPassword">Password</label>
+        <input type="password" class="form-control" placeholder="Enter password" id="newPassword" name="password">
+    </div>
+
+    <div>
+        <label for="newRoles">Role</label>
+        <select multiple class="form-control" id="newRoles" name="roles">
+            <option th:each="role : ${allRoles}"
+                    th:text="${role.name}"
+                    th:value="${role.id}">
+        </select>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-success mt-3">Add new User</button>
+    </div>
+    </form>
+</div>

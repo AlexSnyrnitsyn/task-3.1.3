@@ -1,0 +1,61 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h3 class="modal-title">Delete or edit user</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form role="form" id="userprofile-form" th:action="@{/admin/editUser/{id}(id=${user.getId()})}" th:method="PUT" th:object="${user}">
+    <div class="modal-body">
+        <div class="container col-6 text-center">
+            <div class="form-group text-center">
+
+                <div>
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" th:field="*{id}" id="id" readonly>
+                </div>
+
+                <div>
+                    <label for="name">First name</label>
+                    <input type="text" class="form-control" th:field="*{name}" id="name">
+                </div>
+
+                <div>
+                    <label for="lastName">Last name</label>
+                    <input type="text" class="form-control" th:field="*{lastName}" id="lastName">
+                </div>
+
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" th:field="*{email}" id="email">
+                </div>
+
+                <div>
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" th:field="*{phone}" id="phone">
+                </div>
+
+
+                <div id="password-div">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" autocomplete="current-password">
+                </div>
+
+                <div>
+                    <label for="roles">Role</label>
+                    <select multiple class="form-control" id="roles" name="roles">
+                        <option th:each="role : ${allRoles}"
+                                th:selected="*{hasRole('__${role.id}__')}"
+                                th:text="${role.name}"
+                                th:value="${role.id}">
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn submit">Save</button>
+    </div>
+    </form>
+</div>
